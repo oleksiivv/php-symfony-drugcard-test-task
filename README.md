@@ -18,7 +18,7 @@ Follow these steps to set up the project:
 # Command Signature
 
 ```
-app:parse-products store storage
+app:parse-products store output
 ```
 
 ## Store Options
