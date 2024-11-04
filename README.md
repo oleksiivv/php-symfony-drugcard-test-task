@@ -1,12 +1,29 @@
+# Instruction
+
+Follow these steps to set up the project:
+
+1. Install dependencies:
+   ```
+   composer install
+   ```
+2. Execute database migrations:
+   ```
+   php bin/console doctrine:migrations:migrate
+   ```
+3. For command execution with CSV save strategy, execute the following command after consuming messages:
+   ```
+   php bin/console messenger:consume async -vv
+   ```
+
 # Command Signature
 
 ```
-app:parse-products web-store app-storage
+app:parse-products store storage
 ```
 
 ## Store Options
 
-Refer to `App\Enum\ProductsStoreEnum`:
+Refer to `App\Enum\ProductsStoreEnum` for possible store sources:
 
 - rozetka
 - moyo
@@ -15,7 +32,7 @@ Refer to `App\Enum\ProductsStoreEnum`:
 
 ## Output Options
 
-Refer to `App\Enum\StorageTypeEnum`:
+Refer to `App\Enum\StorageTypeEnum` for output formats:
 
 - csv
 - db
@@ -24,25 +41,27 @@ Refer to `App\Enum\StorageTypeEnum`:
 ## API Endpoint
 
 **GET** `/product/`
-- **Query parameter**:
+- **Query Parameter**:
   - `storageType` (string, optional, values: csv/db)
 
 ## Unit Tests
 
-Coverage for the following namespaces:
-- `App\System\Repository\`
-- `App\System\Service\`
+Test coverage includes:
+
+- Namespaces:
+  - `App\System\Repository\`
+  - `App\System\Service\`
 
 **Execute Tests:**
-```
-php bin/phpunit
-```
+   ```
+   php bin/phpunit
+   ```
 
 ## Docker Usage
 
-### Run Server
+### Running the Server
 
-1. Build and run the docker container:
+1. Build and run the Docker container:
    ```
    sudo docker-compose up -d --build
    ```
@@ -51,13 +70,14 @@ php bin/phpunit
    http://127.0.0.1:8080/product/
    ```
 
-### Execute Tests in Docker Container
+### Executing Tests in Docker Container
 
-1. Enter the container:
+1. Enter the Docker container:
    ```
    docker compose exec web sh
    ```
-2. Run the tests:
+2. Execute the PHP unit tests:
    ```
    php bin/phpunit
    ```
+3. *Follow the same process for other commands.*
