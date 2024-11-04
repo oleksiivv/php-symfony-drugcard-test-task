@@ -1,0 +1,4 @@
+product_list:
+  path: /product/
+  controller: App\Controller\ProductController::list
+  methods: GET
