@@ -17,8 +17,8 @@ class ProductsDBSaveStrategy implements ProductsSaveStrategyInterface
     {
         try {
             $this->productRepository->bulkInsert($products);
-        } catch (UniqueConstraintViolationException $exception) {
-            throw new RuntimeException('Product already exists in the database', $exception);
+        } catch (UniqueConstraintViolationException) {
+            throw new RuntimeException('Product already exists in the database');
         }
     }
 }

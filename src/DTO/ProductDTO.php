@@ -13,4 +13,6 @@ class ProductDTO extends DataTransferObject
     public ?string $imageUrl;
 
     public ?string $productUrl;
+
+    public ?string $store;
 }

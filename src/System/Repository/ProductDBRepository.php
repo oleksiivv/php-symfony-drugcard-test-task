@@ -59,6 +59,7 @@ class ProductDBRepository extends ServiceEntityRepository implements ProductRepo
                 'price' => $product->getPrice(),
                 'imageLink' => $product->getImageUrl(),
                 'productLink' => $product->getProductUrl(),
+                'store' => $product->getStore(),
             ]);
         }, $products);
     }

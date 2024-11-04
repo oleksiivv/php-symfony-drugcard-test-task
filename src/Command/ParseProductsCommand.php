@@ -47,6 +47,6 @@ class ParseProductsCommand extends Command
 
     private function saveResult(array $products, ?string $outputStorage): void
     {
-        $this->productWriteService->save($products, $outputStorage);
+        $this->productWriteService->save(array_unique($products, SORT_REGULAR), $outputStorage);
     }
 }

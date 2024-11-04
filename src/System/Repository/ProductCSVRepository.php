@@ -7,7 +7,7 @@ use Webmozart\Assert\Assert;
 
 class ProductCSVRepository implements ProductRepositoryInterface
 {
-    private const HEADERS = ['name', 'price', 'image_url', 'product_url'];
+    private const HEADERS = ['name', 'price', 'image_url', 'product_url', 'store'];
 
     public function __construct(private readonly string $productsCsvPath)
     {
@@ -25,6 +25,7 @@ class ProductCSVRepository implements ProductRepositoryInterface
                 $product->price,
                 $product->imageUrl,
                 $product->productUrl,
+                $product->store,
             ];
 
             fputcsv($fileHandle, $data);
@@ -45,7 +46,8 @@ class ProductCSVRepository implements ProductRepositoryInterface
                 'name' => $data[0],
                 'price' => $data[1],
                 'imageUrl' => $data[2],
-                'productUrl' => $data[3]
+                'productUrl' => $data[3],
+                'store' => $data[4],
             ]);
         }
 

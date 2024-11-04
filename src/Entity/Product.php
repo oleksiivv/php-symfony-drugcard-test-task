@@ -7,6 +7,10 @@ use App\System\Repository\ProductDBRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductDBRepository::class)]
+#[ORM\UniqueConstraint(
+    name: 'product_unique_index',
+    columns: ['name', 'price', 'store']
+)]
 class Product
 {
     #[ORM\Id]
@@ -14,7 +18,7 @@ class Product
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Orm\Column(length: 255, unique: true)]
+    #[Orm\Column(length: 255)]
     private ?string $name = null;
 
     #[ORM\Column(nullable: true)]
@@ -25,6 +29,9 @@ class Product
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $productUrl = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $store = null;
 
     public function getId(): ?int
     {
@@ -79,7 +86,18 @@ class Product
         $product->setPrice($productDTO->price);
         $product->setImageUrl($productDTO->imageUrl);
         $product->setProductUrl($productDTO->productUrl);
+        $product->setStore($productDTO->store);
 
         return $product;
+    }
+
+    public function getStore(): ?string
+    {
+        return $this->store;
+    }
+
+    public function setStore(?string $store): void
+    {
+        $this->store = $store;
     }
 }

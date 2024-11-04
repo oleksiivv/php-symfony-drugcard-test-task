@@ -32,6 +32,7 @@ class MoyoProductsParser implements ProductsParserInterface
                     'price' => (float) $node->attr('data-price'),
                     'imageUrl' => $node->attr('data-img'),
                     'productUrl' => $node->filterXPath('.//a[@class="product-card_image"]')->attr('href'),
+                    'store' => self::URL,
                 ]);
             } catch (InvalidArgumentException $e) {
                 $this->logger->error($e);

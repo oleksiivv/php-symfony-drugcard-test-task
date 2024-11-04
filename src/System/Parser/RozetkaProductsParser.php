@@ -32,6 +32,7 @@ class RozetkaProductsParser implements ProductsParserInterface
                     'price' => (float) $node->filterXPath('.//span[@class="goods-tile__price-value"]')->text(),
                     'imageUrl' => $node->filterXPath('.//img[@class="lazy_img_hover display-none  ng-failed-lazyloaded ng-lazyloaded"]')->attr('src'),
                     'productUrl' => $node->filterXPath('.//a[@class="product-link goods-tile__picture"]')->attr('href'),
+                    'store' => self::URL,
                 ]);
             } catch (InvalidArgumentException) {
                 $this->logger->error('Found empty node in Rozetka products parser');

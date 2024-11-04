@@ -32,6 +32,7 @@ class FoxtrotProductsParser implements ProductsParserInterface
                     'price' => (float) $node->attr('data-price'),
                     'imageUrl' => $node->filterXPath('.//source[@class="src-jpeg"]')->attr('srcset'),
                     'productUrl' => $node->attr('data-url'),
+                    'store' => self::URL,
                 ]);
             } catch (InvalidArgumentException) {
                 $this->logger->error('Found empty node in Foxtrot products parser');
